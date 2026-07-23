@@ -1,2 +1,3 @@
 # Technical-Training
-All leetcode problem solution
+ Leetcode problem solution with question and name.
+ 
