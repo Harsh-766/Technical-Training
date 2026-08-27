@@ -1,0 +1,36 @@
+class Solution {
+public:
+    int maximumGap(vector<int>& nums) {
+        int n = nums.size();
+        if(n<2){
+            return 0;
+        }
+        int minVal = *min_element(nums.begin(),nums.end());
+        int maxVal = *max_element(nums.begin(),nums.end());
+        if(minVal == maxVal){
+            return 0;
+        }
+        int buckSize = max(1,(maxVal-minVal)/(n-1));
+        int buckCount = (maxVal-minVal)/buckSize+1;
+
+        vector<int> buckMin(buckCount, INT_MAX);
+        vector<int> buckMax(buckCount, INT_MIN);
+
+        for(int x : nums){
+            int index = (x-minVal)/buckSize;
+            buckMin[index] = min(buckMin[index],x);
+            buckMax[index] = max(buckMax[index],x);
+        }
+        int ans = 0;
+        int previousMax = minVal;
+            for(int i = 0; i<buckCount; i++){
+                if(buckMin[i] == INT_MAX){
+                    continue;
+                }
+            ans = max(ans, buckMin[i] - previousMax);
+            previousMax = buckMax[i];
+             }
+        return ans;    
+    }
+
+};
