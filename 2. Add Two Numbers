@@ -1,0 +1,27 @@
+class Solution {
+public:
+   
+    ListNode* addTwoNumbers(ListNode* one, ListNode* two) {
+
+    int carry = 0;
+     ListNode* dummy = new ListNode(0);
+     ListNode* curr= dummy;
+    while(one || two || carry)
+    {
+        int x =  (one) ? one-> val : 0;
+        int y = (two) ? two -> val: 0;
+
+        int sum = x+ y + carry;
+        carry = sum / 10;
+         curr-> next = new ListNode(sum % 10);
+         curr = curr->next;
+
+         if(one) one = one->next;
+         if(two) two = two->next;
+
+
+    }
+    return dummy->next;
+    }
+    
+};
