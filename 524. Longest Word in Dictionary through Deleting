@@ -1,0 +1,30 @@
+class Solution {
+public:
+        bool isSubsequence(string s, string word){
+            int i = 0; int j = 0;
+            while(i < s.size() && j < word.size()){
+                if(s[i] == word[j]){
+                    i++;
+                    j++;
+                }
+                else{
+                    i++;
+                }
+            }
+            return j == word.size();
+        }
+    string findLongestWord(string s, vector<string>& dictionary){ 
+        string ans = "";
+        for(int i = 0; i<dictionary.size(); i++){
+            if(isSubsequence(s,dictionary[i])){
+                if(dictionary[i].size() > ans.size()){
+                    ans = dictionary[i];
+                }
+                else if(dictionary[i].size() == ans.size() && dictionary[i] < ans){
+                     ans = dictionary[i];
+                }
+            }
+        }
+        return ans;
+    }
+};
